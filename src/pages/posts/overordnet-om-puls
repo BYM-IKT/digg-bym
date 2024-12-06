@@ -1,0 +1,37 @@
+---
+type: 1
+title: "Overordnet om PULS"
+author: "Marte Urstad"
+publishedAt: "2024-12-06T07:00:00+01:00"
+summary: "Vi kan ikke lengre ha PULS i etaten, så hvordan blir fremtiden?"
+image: { url: "/src/assets/ikke-snokaos-pa-ensjo.png", alt: "Ingen snø på bakken", height: "500px" }
+draft: true
+layout: "../../layouts/ArtikkelLayout.astro"
+---
+import IkkeSnoKaos from "@assets/ikke-snokaos.png"
+
+<ArticleImage src={IkkeSnoKaos.src} alt="Ingen snø på bakken" width="500px" captionWidth="500px" float="left" padding="0 1rem 0 0" caption={{
+  heading: "OVERSIKTSBILDE",
+  text: "Slik er det vedtatt at PULS skal erstattes.",
+  Illustratør: "Marte Urstad"
+}} />
+
+Gjennom vinteren 2023 blir det avdekket at PULS ikke lengre kan være operativ i etaten, og at vi må finne andre løsninger som tar vare på brukerbehovene. 
+Om dette er telefon, teams, hyllevarer eller egen utviklete systemer er det samme så lenge PULS blir lagt ned innen vinteren 2024. 
+
+## Oppdrags- og kommunikasjonsstyring
+Ett av de viktigste brukerbehovene som PULS dekker er oppdrags- og kommunikasjonsløsning. Dette skal erstattes av hyllevaren Mobility Workspace etter grundig 
+saumfaring av markedet. Her skal vaktsentralen kunne videreformidle oppdrag ang. feilparkerte kjøretøy eller andre farer i gatebilde til bybetjenten, slik at 
+bybetjenten kan komme seg frem og sikre fremkommelighet i gatebilde. 
+
+## Søksys
+Containerleie skal være en egen søknad i Søksys som containerrederne kan levere inn eller ringe til vaktsentralen for få registrert inn. Dette vil gjøre 
+at saksbehandler for grave- og arbeidstillatelser ikke godkjenner ett arbeid hvor det står en container, og at vaktsentralen kan advare om at et arbeid starter 
+denne dagen slik at containeren må fjernes innen da. 
+
+## Gatebilde
+
+Midlertidige vedtak fra Søksys skal tilgjengeliggjøres i Gatebilde. Dette vil si at arbeidstillatelser med arbeidsvarslingsplan, gravetillatelse med 
+arbeidsvarslingsplan og containere vil være synlig for byebetjenten som håndhever i gaten. For arbeids- og gravetillatelster vil man også få ett tidspunkt 
+for når skiltene er satt ut. 
+
