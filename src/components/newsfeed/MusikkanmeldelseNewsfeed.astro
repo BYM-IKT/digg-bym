@@ -14,14 +14,14 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 ---
 
 <a class="newsfeed-post-link" href={url}>
-  <div class="newsfeed-post-draft-image-wrapper">
+  <div class="newsfeed-post-image-wrapper">
     <Picture
       class="newsfeed-post-image"
       style={image.height ? { height: image.height } : null}
       src={images[image.url]()}
       alt={image.alt}
     />
-    {draft === true && <span>Draft</span>}
+    {draft === true && <span class="newsfeed-post-draft">Draft</span>}
   </div>
   <h2 class="newsfeed-post-heading-wrapper newsfeed-post-heading">{title}</h2>
 </a>

@@ -4,6 +4,7 @@ export enum PostType {
   Matspalten = 3,
   Leder = 4,
   Musikkanmeldelse = 5,
+  Temaserie = 6,
 }
 
 export interface Frontmatter {
@@ -34,3 +35,7 @@ export interface MatspaltenFrontmatter extends Frontmatter {}
 export interface LederFrontmatter extends Frontmatter {}
 
 export interface MusikkanmeldelseFrontmatter extends Frontmatter {}
+
+export interface TemaserieFrontmatter extends Frontmatter {
+  tema: string;
+}

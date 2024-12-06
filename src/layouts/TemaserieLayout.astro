@@ -1,0 +1,46 @@
+---
+import type { MDXLayoutProps } from "astro";
+import Layout from "./Layout.astro";
+import type { TemaserieFrontmatter } from "@interfaces/frontmatter";
+
+interface Props extends MDXLayoutProps<TemaserieFrontmatter> {}
+
+const {
+  frontmatter: { title, author, tema },
+} = Astro.props;
+---
+
+<Layout>
+  <article>
+    <h1>{title}</h1>
+    <div><span class="category">{`En del av temaserien «${tema}»`}</span></div>
+    <div><span class="authored-by">{`Av ${author}`}</span></div>
+    <slot />
+  </article>
+</Layout>
+
+<style>
+  article {
+    margin: 0;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 4rem;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+  .category {
+    font-size: 1.5rem;
+    font-weight: medium;
+    margin-bottom: 0.25rem;
+  }
+
+  .authored-by {
+    font-size: 1.25rem;
+    color: #666;
+  }
+</style>
