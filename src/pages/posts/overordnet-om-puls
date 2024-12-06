@@ -8,9 +8,9 @@ image: { url: "/src/assets/ikke-snokaos-pa-ensjo.png", alt: "Ingen snø på bakk
 draft: true
 layout: "../../layouts/ArtikkelLayout.astro"
 ---
-import IkkeSnoKaos from "@assets/ikke-snokaos.png"
+import PulsOverordnet from "@assets/Puls-overordnet.jpg"
 
-<ArticleImage src={IkkeSnoKaos.src} alt="Ingen snø på bakken" width="500px" captionWidth="500px" float="left" padding="0 1rem 0 0" caption={{
+<ArticleImage src={PulsOverordnet.src} alt="Oversiktsbilde av Puls" width="500px" captionWidth="500px" float="left" padding="0 1rem 0 0" caption={{
   heading: "OVERSIKTSBILDE",
   text: "Slik er det vedtatt at PULS skal erstattes.",
   Illustratør: "Marte Urstad"
