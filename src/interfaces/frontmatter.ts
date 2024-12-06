@@ -21,7 +21,9 @@ export interface Frontmatter {
   elementsPerRow?: number;
 }
 
-export interface ArtikkelFrontmatter extends Frontmatter {}
+export interface ArtikkelFrontmatter extends Frontmatter {
+  severity: "low" | "medium" | "high";
+}
 
 export interface ReisebrevFrontmatter extends Frontmatter {
   destination: string;

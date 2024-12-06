@@ -10,6 +10,7 @@ interface Props {
   width?: string;
   captionWidth?: string;
   float?: "left" | "right";
+  padding?: string;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   width = "100%",
   captionWidth = "100%",
   float = "none",
+  padding = "0",
 } = Astro.props;
 ---
 
@@ -31,12 +33,12 @@ const {
   </figcaption>
 </figure>
 
-<style define:vars={{ width, captionWidth, float }}>
+<style define:vars={{ width, captionWidth, float, padding }}>
   figure {
     float: var(--float);
     width: var(--width);
     margin: 0;
-    padding: 0;
+    padding: var(--padding);
   }
 
   img {

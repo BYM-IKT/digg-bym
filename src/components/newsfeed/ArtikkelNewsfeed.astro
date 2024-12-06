@@ -7,13 +7,33 @@ import type { ArtikkelFrontmatter } from "@interfaces/frontmatter";
 
 interface Props extends NewsfeedProps, ArtikkelFrontmatter {}
 
-const { draft, title, url, image, elementsPerRow = 1 } = Astro.props;
+const {
+  draft,
+  title,
+  url,
+  image,
+  elementsPerRow = 1,
+  severity = "low",
+} = Astro.props;
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/*.{jpeg,jpg,png,gif}"
 );
+const getColors = (severity: "low" | "medium" | "high") => {
+  switch (severity) {
+    case "low":
+      return { backgroundColor: "inherit", color: "inherit" };
+    case "medium":
+      return { backgroundColor: "red", color: "white" };
+    case "high":
+      return { backgroundColor: "black", color: "white" };
+    default:
+      return { backgroundColor: "inherit", color: "inherit" };
+  }
+};
+const { backgroundColor, color } = getColors(severity);
 ---
 
-<a class="newsfeed-post-link" href={url}>
+<a class="newsfeed-post-link newsfeed-post-link-artikkel" href={url}>
   <div class="newsfeed-post-draft-image-wrapper">
     <Picture
       class="newsfeed-post-image"
@@ -25,4 +45,9 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
   </div>
   <h2 class="newsfeed-post-heading">{title}</h2>
 </a>
-<style define:vars={{ elementsPerRow }}></style>
+<style define:vars={{ elementsPerRow, backgroundColor, color }}>
+  .newsfeed-post-link-artikkel {
+    background-color: var(--backgroundColor);
+    color: var(--color);
+  }
+</style>
