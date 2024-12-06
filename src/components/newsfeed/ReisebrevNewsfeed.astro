@@ -30,8 +30,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     />
     {draft === true && <span>Draft</span>}
   </div>
-  <span class="newsfeed-post-destination">{destination}:</span>
-  <h2 class="newsfeed-post-heading">{title}</h2>
+  <div class="newsfeed-post-heading-wrapper">
+    <span class="newsfeed-post-destination">{destination}:</span>
+    <h2 class="newsfeed-post-heading">{title}</h2>
+  </div>
 </a>
 <style define:vars={{ elementsPerRow }}>
   .newsfeed-post-destination {

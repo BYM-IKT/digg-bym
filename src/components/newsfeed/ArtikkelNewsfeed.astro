@@ -43,11 +43,21 @@ const { backgroundColor, color } = getColors(severity);
     />
     {draft === true && <span>Draft</span>}
   </div>
-  <h2 class="newsfeed-post-heading">{title}</h2>
+  <div class="newsfeed-post-heading-wrapper">
+    {
+      severity === "high" && (
+        <span class="newsfeed-post-severity">Akkurat nå:</span>
+      )
+    }
+    <h2 class="newsfeed-post-heading">{title}</h2>
+  </div>
 </a>
 <style define:vars={{ elementsPerRow, backgroundColor, color }}>
   .newsfeed-post-link-artikkel {
     background-color: var(--backgroundColor);
     color: var(--color);
+  }
+  .newsfeed-post-severity {
+    font-size: 1.5rem;
   }
 </style>

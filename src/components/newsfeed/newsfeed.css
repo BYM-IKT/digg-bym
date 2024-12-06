@@ -1,7 +1,7 @@
 .newsfeed-post-draft-image-wrapper {
   position: relative;
 }
-.newsfeed-post-draft-image-wrapper span {
+.newsfeed-post-draft-image-wrapper > span {
   position: absolute;
   top: 0;
   left: 0;
@@ -11,6 +11,10 @@
   border-radius: 5px;
   color: #000;
   z-index: 1;
+}
+.newsfeed-post-heading-wrapper {
+  padding: 0.5rem;
+  margin: 0;
 }
 .newsfeed-post-heading {
   margin: 0;
