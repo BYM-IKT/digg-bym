@@ -1,0 +1,25 @@
+---
+type: 6
+tema: "Erstatning av Puls"
+title: "Oppdragsstyyring- og kommunikasjonssystem"
+author: "Marte Urstad"
+publishedAt: "2024-12-06T12:00:00+01:00"
+summary: "1/5 del av Puls er erstattet"
+image: { url: "/src/assets/pulsmannen.png", alt: "Pulsmannen", height: "500px" }
+layout: "../../layouts/TemaserieLayout.astro"
+Draft: True
+---
+import PulsOverordnet from "@assets/puls-overordnet.png"
+import ArticleImage from "@components/ArticleImage.astro"
+
+<ArticleImage src={PulsOverordnet.src} alt="Oversiktsbilde av Puls" caption={{
+  heading: "OVERSIKTSBILDE",
+  text: "Slik er det vedtatt at Puls skal erstattes.",
+  photographer: "Marte Urstad / Miro"
+}} />
+
+Intro
+
+## Mellomtittel 
+Brødtekst 
+
