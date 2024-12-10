@@ -54,8 +54,4 @@ Digg har snakket med andre deltagere på middagen, som ikke er enig i Matres kri
 
 <i>Vi gjør leserne oppmerksomme på at det her er snakk om Ola Matre. Ikke den norske utenlandsfareren og eventyreren Joshua French, som sett på nyhetene.</i>
 
-<ArticleImage src={RespektabelMengdeSno.src} alt="Snø på bakken" padding="1rem 0 0 0" caption={{
-  heading: "RESPEKTABEL MENGDE",
-  text: "I Lillestrøm lavet det ned, og Marte Urstad ble involvert i snøballkrig. Ingen liv gikk tapt.",
-  photographer: "Marte Urstad"
 }} />
