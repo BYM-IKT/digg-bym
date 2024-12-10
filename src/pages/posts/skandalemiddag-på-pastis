@@ -8,6 +8,7 @@ image: { url: "/src/assets/IMG_1877.JPEG", alt: "Menn på restaurant", height: "
 layout: "../../layouts/ArtikkelLayout.astro"
 ---
 import IMG_1877.JPEG from "@assets/IMG_1877.JPEG"
+import reklame-sokna-bym-stilling.gif from "@assets/reklame-sokna-bym-stilling.gif"
 import ArticleImage from "@components/ArticleImage.astro"
 
 <ArticleImage src={IMG_1877.JPEG.src} alt="Fikk ingen mat på fransk restaurant." width="500px" captionWidth="500px" float="left" padding="0 1rem 0 0" caption={{
@@ -27,15 +28,15 @@ Tidligere på dagen hadde divisjonen FAD besøkt kollegaer som står på for at 
 Etter opplegget bar turen til Pastis bistrobar. 
 
 *Artikkelen fortsetter under annonsen.*
-<ArticleImage src={IkkeSnoKaos2.src} alt="Ingen snø på bakken" width="500px" captionWidth="500px" float="right" padding="0 0 0 1rem" caption={{
-  heading: "SNØFRITT PÅ ENSJØ",
-  text: "På Ensjø kunne de puste lettet ut, da snøen uteble.",
-  photographer: "Ola Matre"
+
+<ArticleImage src={reklame-sokna-bym-stilling.gif} alt="" padding="1rem 0 0 0"  }} />
+
+
 }} />
 
 ## Skuffet av oppfølgingen av vegetarvedtak i bystyret 
 
-Man kan se Oslo rådhus fra restauranten. Oslo kommune har som styrende prinsipp at alle arrangementer i regi av kommunen skal tilby vegetarmat. 
+Man kan se Oslo rådhus fra restauranten, men det betyr ikke at bystyret kan bestemme alt. Oslo kommune har som styrende prinsipp at alle arrangementer i regi av kommunen skal tilby vegetarmat. 
  - Les mer om Oslo kommunes vegetarpolitikk på deres nettsider: <a href="https://www.oslo.kommune.no/miljo-og-klima/slik-jobber-vi-med-miljo-og-klima/mat-i-oslo-kommune/vegetarmat-i-oslo-kommune/#gref"> klikk her for å lese mer</a>.
 
 Selv om Rådhusets makt var nært, var leveransen langt unna da Digitaliseringsvgevinst'n snakket med ingeniør, Ola Matre (34). 
