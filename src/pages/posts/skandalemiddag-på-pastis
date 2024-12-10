@@ -4,15 +4,13 @@ title: "Skandalemiddag på Pastis for norske Ola"
 author: "Anne Helene Bakke"
 publishedAt: "2024-12-11T09:00:00+01:00"
 summary: "Du vil aldri tro hva som skjedde på denne franske bistroen."
-image: { url: "/src/assets/ikke-snokaos-pa-ensjo.png", alt: "Ingen snø på bakken", height: "500px" }
+image: { url: "/src/assets/IMG_1877.JPEG", alt: "Menn på restaurant", height: "500px" }
 layout: "../../layouts/ArtikkelLayout.astro"
 ---
-import IkkeSnoKaos from "@assets/ikke-snokaos.png"
-import IkkeSnoKaos2 from "@assets/ikke-snokaos-pa-ensjo.png"
-import RespektabelMengdeSno from "@assets/respektabel-mengde-sno.png"
+import IMG_1877.JPEG from "@assets/IMG_1877.JPEG"
 import ArticleImage from "@components/ArticleImage.astro"
 
-<ArticleImage src={IkkeSnoKaos.src} alt="Fikk ingen mat på fransk restaurant." width="500px" captionWidth="500px" float="left" padding="0 1rem 0 0" caption={{
+<ArticleImage src={IMG_1877.JPEG.src} alt="Fikk ingen mat på fransk restaurant." width="500px" captionWidth="500px" float="left" padding="0 1rem 0 0" caption={{
   heading: "Ola (35)",
   text: "Ventet lenge på maten.",
   foto: "Anne Helene Bakke"
