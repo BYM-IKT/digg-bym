@@ -1,0 +1,58 @@
+---
+type: 1
+title: "Skandalemiddag på Pastis for norske Ola"
+author: "Anne Helene Bakke"
+publishedAt: "2024-12-11T09:00:00+01:00"
+summary: "Du vil aldri tro hva som skjedde på denne franske bistroen."
+image: { url: "/src/assets/IMG_1877.JPEG", alt: "Menn på restaurant", height: "500px" }
+layout: "../../layouts/ArtikkelLayout.astro"
+---
+import IMG_1877.JPEG from "@assets/IMG_1877.JPEG"
+import reklame-sokna-bym-stilling.gif from "@assets/reklame-sokna-bym-stilling.gif"
+import ArticleImage from "@components/ArticleImage.astro"
+
+<ArticleImage src={IMG_1877.JPEG.src} alt="Fikk ingen mat på fransk restaurant." width="500px" captionWidth="500px" float="left" padding="0 1rem 0 0" caption={{
+  heading: "Ola (35)",
+  text: "Ventet lenge på maten.",
+  foto: "Anne Helene Bakke"
+}} />
+
+Divisjonen i Bymiljøetaten skulle besøke en finere restaurant, men ble sjokkert av hva som skjedde der. 
+
+## Hadde befart hovedstaden 
+
+Tidligere på dagen hadde divisjonen FAD besøkt kollegaer som står på for at Oslo skal være en bedre by å bo i. De ansatte gikk gjennom et spennende og lærerikt opplegg i blant annet Spikersuppa. Bymiljøetaten har ansvar for å forvalte byarealer i Oslo kommune. 
+
+\- Jeg hørte ingenting de fortalte oss, uttaler Jenny Aasebø (kjent fra https://jennyaaseboe.no/) når vi møter henne i Oslo sentrum. 
+
+Etter opplegget bar turen til Pastis bistrobar. 
+
+*Artikkelen fortsetter under annonsen.*
+
+<ArticleImage src={reklame-sokna-bym-stilling.gif} alt="" padding="1rem 0 0 0"  }} />
+
+
+}} />
+
+## Skuffet av oppfølgingen av vegetarvedtak i bystyret 
+
+Man kan se Oslo rådhus fra restauranten, men det betyr ikke at bystyret kan bestemme alt. Oslo kommune har som styrende prinsipp at alle arrangementer i regi av kommunen skal tilby vegetarmat. 
+ - Les mer om Oslo kommunes vegetarpolitikk på deres nettsider: <a href="https://www.oslo.kommune.no/miljo-og-klima/slik-jobber-vi-med-miljo-og-klima/mat-i-oslo-kommune/vegetarmat-i-oslo-kommune/#gref"> klikk her for å lese mer</a>.
+
+Selv om Rådhusets makt var nært, var leveransen langt unna da Digitaliseringsvgevinst'n snakket med ingeniør, Ola Matre (34). 
+
+**- Hvorfor bestilte du vegetarmat?**
+
+\- Jeg prøver å diversifisere matinntaket mitt sånn at jeg ikke utelukkende lever på kald risgrøt i pose fra Spar, sier Matre.
+
+Den tålmodige heggedølingen måtte vente lenge på maten. Da den endelig kom kl. 16:25, hadde de fleste spist opp sin egen mat. 
+
+**-Hva føler du nå?**
+
+\- Jeg er skuffet. 
+
+Digg har snakket med andre deltagere på middagen, som ikke er enig i Matres kritikk. Både seksjonssjef William Young og Hong-Tan Lam opplevde maten som ålreit, og at den kom fort på bordet. 
+
+<i>Vi gjør leserne oppmerksomme på at det her er snakk om Ola Matre. Ikke den norske utenlandsfareren og eventyreren Joshua French, som sett på nyhetene.</i>
+
+}} />
