@@ -33,7 +33,19 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     />
     <meta name="twitter:image" content="/karvesvingen3.png" />
     <meta name="twitter:url" content="https://digg.bymoslo.no" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="icon"
+      href="/favicon.svg"
+      type="image/x-icon"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      href="/favicon-dark-mode.svg"
+      type="image/x-icon"
+      media="(prefers-color-scheme: dark)"
+    />
     <meta name="generator" content={Astro.generator} />
     <title>Digitaliseringsgevinst'n</title>
   </head>
@@ -43,8 +55,8 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
         <div class="logo">
           <Fragment set:html={Logo} />
         </div>
-        <span class="app-name visible-non-phone">Digitaliseringsgevinst'n</span>
-        <span class="app-name visible-phone-only">Digg!</span>
+        <span class="app-name visible-non-phone">igitaliseringsgevinst'n</span>
+        <span class="app-name visible-phone-only">igg!</span>
       </a>
       <SpreGledeKnapp />
     </header>
@@ -108,6 +120,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     display: flex;
     width: calc(1rem + 2vw);
     height: calc(1rem + 2vw);
+    stroke-width: 0.5rem;
   }
   .visible-non-phone {
     @media (max-width: 800px) {
