@@ -22,7 +22,7 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 );
 ---
 
-<a class="newsfeed-post-link newsfeed-post-link-artikkel" href={url}>
+<a class="newsfeed-post-link newsfeed-post-link-nekrolog" href={url}>
   <div class="newsfeed-post-image-wrapper">
     <Picture
       class="newsfeed-post-image"
@@ -32,9 +32,34 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
     />
     {draft === true && <span class="newsfeed-post-draft">Draft</span>}
   </div>
-  <div class="newsfeed-post-heading-wrapper">
-    <h2 class="newsfeed-post-heading">{title}</h2>
+  <div
+    class="newsfeed-post-heading-wrapper newsfeed-post-heading-wrapper-nekrolog"
+  >
+    <h2>{title}</h2>
     <span>{`${name} (${from}-${to})`}</span>
   </div>
 </a>
-<style define:vars={{ elementsPerRow }}></style>
+<style define:vars={{ elementsPerRow }}>
+  .newsfeed-post-link-nekrolog {
+    display: flex;
+    flex-direction: row;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .newsfeed-post-heading-wrapper-nekrolog {
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 2rem 0 2rem;
+  }
+  .newsfeed-post-heading-wrapper-nekrolog > h2 {
+  }
+  .newsfeed-post-heading-wrapper-nekrolog > span {
+  }
+</style>
