@@ -1,0 +1,41 @@
+---
+import type { MDXLayoutProps } from "astro";
+import Layout from "./Layout.astro";
+import type { NekrologFrontmatter } from "@interfaces/frontmatter";
+
+interface Props extends MDXLayoutProps<NekrologFrontmatter> {}
+
+const {
+  frontmatter: { title, author, summary },
+} = Astro.props;
+---
+
+<Layout>
+  <article>
+    <h1>{title}</h1>
+    <p class="ingress">{summary}</p>
+    <span class="authored-by">Skrevet av {author}</span>
+    <slot />
+  </article>
+</Layout>
+
+<style>
+  article {
+    margin: 0;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 4rem;
+  }
+
+  .authored-by {
+    font-size: 1.25rem;
+    color: #666;
+  }
+
+  .ingress {
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
+</style>

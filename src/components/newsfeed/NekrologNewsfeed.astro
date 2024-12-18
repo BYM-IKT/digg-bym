@@ -1,0 +1,40 @@
+---
+import "./newsfeed.css";
+import { Picture } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import type { NewsfeedProps } from "@interfaces/newsfeed";
+import type { NekrologFrontmatter } from "@interfaces/frontmatter";
+
+interface Props extends NewsfeedProps, NekrologFrontmatter {}
+
+const {
+  draft,
+  title,
+  url,
+  image,
+  elementsPerRow = 1,
+  from,
+  to,
+  name,
+} = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/*.{jpeg,jpg,png,gif}"
+);
+---
+
+<a class="newsfeed-post-link newsfeed-post-link-artikkel" href={url}>
+  <div class="newsfeed-post-image-wrapper">
+    <Picture
+      class="newsfeed-post-image"
+      style={image.height ? { height: image.height } : null}
+      src={images[image.url]()}
+      alt={image.alt}
+    />
+    {draft === true && <span class="newsfeed-post-draft">Draft</span>}
+  </div>
+  <div class="newsfeed-post-heading-wrapper">
+    <h2 class="newsfeed-post-heading">{title}</h2>
+    <span>{`${name} (${from}-${to})`}</span>
+  </div>
+</a>
+<style define:vars={{ elementsPerRow }}></style>

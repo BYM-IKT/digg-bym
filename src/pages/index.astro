@@ -7,6 +7,7 @@ import {
   type LederFrontmatter,
   type MatspaltenFrontmatter,
   type MusikkanmeldelseFrontmatter,
+  type NekrologFrontmatter,
   type ReisebrevFrontmatter,
   type TemaserieFrontmatter,
 } from "@interfaces/frontmatter";
@@ -17,6 +18,7 @@ import ReisebrevNewsfeed from "@components/newsfeed/ReisebrevNewsfeed.astro";
 import LederNewsfeed from "@components/newsfeed/LederNewsfeed.astro";
 import MusikkanmeldelseNewsfeed from "@components/newsfeed/MusikkanmeldelseNewsfeed.astro";
 import TemaserieNewsfeed from "@components/newsfeed/TemaserieNewsfeed.astro";
+import NekrologNewsfeed from "@components/newsfeed/NekrologNewsfeed.astro";
 
 const posts = await Astro.glob<Frontmatter>("../pages/posts/*.mdx");
 const getUrl = (url?: string) => (url ? url + "/index.html" : undefined);
@@ -81,6 +83,12 @@ const sortArticles = (
             {post.frontmatter.type === PostType.Temaserie && (
               <TemaserieNewsfeed
                 {...(post.frontmatter as TemaserieFrontmatter)}
+                url={getUrl(post.url)}
+              />
+            )}
+            {post.frontmatter.type === PostType.Nekrolog && (
+              <NekrologNewsfeed
+                {...(post.frontmatter as NekrologFrontmatter)}
                 url={getUrl(post.url)}
               />
             )}
