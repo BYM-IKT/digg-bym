@@ -1,6 +1,5 @@
 ---
 type: 7
-draft: true
 title: "Adjø fabrikksjef"
 author: "Ola Matre og Marte Urstad"
 publishedAt: "2024-12-18T09:00:00+01:00"
@@ -15,15 +14,17 @@ import TrongDrikker from "@assets/trong-drikker.png"
 import TeamIpa from "@assets/team-ipa-collage.png"
 import MolandOgFrench from "@assets/moland-og-french-halloween.png"
 import ArticleImage from "@components/ArticleImage.astro"
+import LinnChristin from "@assets/linn-christin-haugen-lytskjold.png"
+import Marve from "@assets/marve-portrett.png"
+import OlaMatre from "@assets/ola-matre.png"
+import Infobox from "@components/Infobox.astro"
+import CardWithImage from "@components/CardWithImage.astro"
 
 <ArticleImage src={MolandOgFrench.src} alt="Vemund Fredriksen og Ola Matre utkledd som Moland og French på Halloween" width="300px" captionWidth="300px" float="right" caption={{
   heading: "GODE KOLLEGER",
   text: "Vemund Fredriksen og Ola Matre har hatt et kollegialt, men ikke vennskapelig forhold under sin overlappende epoke i Bymiljøetaten.",
   photographer: "Johanna Peersdatter Haarseth"
 }} />
-
-TODO: 5 kjappe
-TODO: Kolleger om Vemund
 
 Vemund kom inn som nyutdanna utvikler og konsulent fra Sopria Steria i september 2021 under Linn Christin Haugen Lytskjold sitt nyoppstarta Team Ipa. Med sin mastergrad i informatikk fra teknologihovedstaten (omstridt) Trondheim og hans ekstreme Ut i vår hage-kompetanse ble han en viktig brikke i utviklingen av den nye inntauingsløsningen.
 
@@ -42,6 +43,29 @@ Vi tok en prat med Vemund for å snakke mer om livet og hans tid i Digital Utvik
 Det er kanskje ikke så vanlig med nekrologer post mortum, men vi ender i alle fall med å få mange gode råd fra en med relativt mye livserfaring.
 
 **- Skulle jeg gitt meg selv et godt råd da jeg startet denne reisen ville det vært å være mer frempå i de uoffisielle kanalene slik at man får fremdrift og svar. ...og at den beste kaffen er i åttende etasje.**
+
+<Infobox>
+  <h2>5 kjappe om Vemund</h2>
+    <div>
+      <strong>Hvem er den diggeste i Digital Utvikling?</strong>
+      <p>digg.bymoslo.no.</p>
+    </div>
+    <div>
+      <strong>Om du var savantautist, hva hadde vært din greie?</strong>
+      <p>Å huske alle detaljer folk sier til meg.</p>
+    </div>
+    <div>
+      <strong>Liker du HTML?</strong>
+      <p>Ja.</p>
+    </div>
+    <div>
+      <strong>Liker:</strong> sushi
+    </div>
+    <div>
+      <strong>Liker ikke:</strong> folk som klager
+    </div>
+    <i>En liten intern vurdering på dette punktet fra Ola og Marte: Her har vi en antagelse om at Vemund har mislikt Marte og Ola i flere år siden vi konstant klager til han. Konstant.</i>
+</Infobox>
 
 <ArticleImage src={TeamIpa.src} alt="Collage fra det forhenværende og myteomspunnende Team Ipa" width="300px" captionWidth="300px" float="left" caption={{
   heading: "KNALLHARDT ARBEID",
@@ -72,6 +96,22 @@ src="https://www.youtube.com/embed/rvlLibeTfrQ">
 På spørsmål om han har lært noe HTML forteller Vemund oss at han tvert imot er blitt svakere i HTML, men sterkere på å krangle. Når vi spør han om han har gitt Bym noe svarer han beskjedent:
 
 **- Masse teknisk gjeld. Bidratt med mitt. Gjort så godt jeg kan. Blir ikke bedre enn det med meg på laget. Burde kanskje hatt noen andre...**
+
+<Infobox>
+  <h2>Kolleger om Vemund</h2>
+  <CardWithImage src={LinnChristin.src} alt="Portrettbilde av Linn Christin Haugen Lytskjold">
+    <strong>Linn Christin Haugen Lytskjold, tidligere parkeringsområdeleder</strong>
+    <p>Han er OK til å være rødhåret.</p>
+  </CardWithImage>
+  <CardWithImage src={Marve.src} alt="Portrettbilde av Marve">
+    <strong>Marve, servicehund</strong>
+    <p>Han er skummel, men ga meg godteri en gang.</p>
+  </CardWithImage>
+  <CardWithImage src={OlaMatre.src} alt="Portrettbilde av Ola Matre">
+    <strong>Ola Matre, webmaster i Digitaliseringsgevinst’n</strong>
+    <p>Han løper helt greit men er nok raskere til å gjengi Uti vår hage-referanser.</p>
+  </CardWithImage>
+</Infobox>
 
 <ArticleImage src={TrongDrikker.src} alt="Vemund Fredriksen og Ola Matre utkledd som Moland og French på Halloween" width="100%" captionWidth="100%" caption={{
   heading: "HR-SAK?",
