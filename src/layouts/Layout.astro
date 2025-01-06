@@ -75,6 +75,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
             width="150"
             height="150"
           />
+          <Image
+            src={images["/src/assets/lenka-kaffe-reklame.gif"]()}
+            alt="Reklame for kaffe på Lenka"
+            width="150"
+            height="600"
+          />
         </div>
       </div>
       <slot />
@@ -91,6 +97,12 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
             alt="Reklame for Bil i Oslo"
             width="150"
             height="150"
+          />
+          <Image
+            src={images["/src/assets/lenka-kaffe-reklame.gif"]()}
+            alt="Reklame for kaffe på Lenka"
+            width="150"
+            height="600"
           />
         </div>
       </div>
