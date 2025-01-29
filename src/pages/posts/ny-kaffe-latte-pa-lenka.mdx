@@ -1,52 +1,55 @@
 ---
 type: 3
-title: "Spicey latte trenden er ikke over"
+title: "Spicey latte: trenden er ikke over"
 author: "Johanna Haarseth"
 publishedAt: "2025-01-29T13:00:00+01:00"
 summary: ""
 image:
-  { url: "/src/assets/kaffe-fra-lenka.png", alt: "Kopp med latte" }
-
+  { url: "/src/assets/kaffe-fra-lenka.png", alt: "Kopp med latte", height: 750px }
 layout: "../../layouts/MatspaltenLayout.astro"
 elementsPerRow: 1
-draft: true
 ---
+import ArticleImage from "@components/ArticleImage.astro"
 import KaffeFraLenka from "@assets/kaffe-fra-lenka.png";
-import MirelaLikerKaffe from "@assets/mirela-drikker-kaffe.png";
+import MirelaLikerKaffe from "@assets/mirela-og-marte-drikker-kaffe.png";
 import NavidLikerKaffe from "@assets/navid-drikker-kaffe.png";
 import HansErlingLikerKaffe from "@assets/hans-erling-drikker-kaffe.png";
 
-<figure style={{width: "100%" }}>
-  <img src={KaffeFraLenka.src} alt="Kopp med latte" />
-  <figcaption style={{ color: "#666", width: "100%" }}>SPICY: Lenka har kommet med en ny kaffe, den er spicy! Foto: Johanna Haarseth</figcaption>
-</figure>
+<ArticleImage src={KaffeFraLenka.src} alt="Kopp med latte" caption={{
+  heading: "SPICY",
+  text: "Lenka har kommet med en ny kaffe, den er spicy!",
+  photographer: "Johanna Peersdatter Haarseth"
+}} />
 
 **Har du enda ikke testet spicy latte på Lenka? Høstens store trend har blitt en snakkis i DU.**
 
 Pumpkin spice latte er en latte med pumpkin spice sirup. Den har smaker av kanel og gresskar.
 Mirela testet pumpkin spicy for første gang i år.
 
-– Wow, skikkelig godt!
+\- Wow, skikkelig godt!
 
-<figure style={{width: "100%" }}>
-  <img src={MirelaLikerKaffe.src} alt="Mirela med latte" />
-  <figcaption style={{ color: "#666", width: "100%" }}>Mirela drikker pumpkin spice latte Foto: Johanna Haarseth</figcaption>
-</figure>
+<ArticleImage src={MirelaLikerKaffe.src} alt="Mirela med latte" caption={{
+  heading: "SPICY",
+  text: "Mirela drikker pumpkin spice latte.",
+  photographer: "Johanna Peersdatter Haarseth"
+}} />
 
 Navid har også blitt overbevist om hvor godt pumpkin spice latte er.
 
-– Det er nok det beste jeg noen gang har smakt.
+\- Det er nok det beste jeg noen gang har smakt.
 
-<figure style={{width: "100%" }}>
-  <img src={NavidLikerKaffe.src} alt="Navid med latte" />
-  <figcaption style={{ color: "#666", width: "100%" }}>Navid drikker pumpkin spice latte Foto: Johanna Haarseth</figcaption>
-</figure>
+<ArticleImage src={NavidLikerKaffe.src} alt="Navid med latte" caption={{
+  heading: "SPICY",
+  text: "Navid drikker pumpkin spice latte.",
+  photographer: "Johanna Peersdatter Haarseth"
+}} />
 
-Selv kaffesnobb Hans Erling har prøvd seg på trenden
+Selv kaffesnobb Hans Erling har prøvd seg på trenden.
 
-- Godt, men det slår ikke kamelbæsjkaffen jeg drakk på Bali i 2020.
+**\- Godt, men det slår ikke kamelbæsjkaffen jeg drakk på Bali i 2020.**
 
-<figure style={{width: "100%" }}>
-  <img src={HansErlingLikerKaffe.src} alt="Hans Erling med latte" />
-  <figcaption style={{ color: "#666", width: "100%" }}>Hans Erling drikker pumpkin spice latte Foto: Johanna Haarseth</figcaption>
-</figure>
+<ArticleImage src={HansErlingLikerKaffe.src} alt="Hans Erling med latte" caption={{
+  heading: "SPICY",
+  text: "Hans Erling drikker pumpkin spice latte.",
+  photographer: "Johanna Peersdatter Haarseth"
+}} />
