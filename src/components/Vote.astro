@@ -1,0 +1,74 @@
+---
+interface Props {
+  question: string;
+  alternatives: string[];
+}
+
+const { question, alternatives } = Astro.props;
+
+let votes = alternatives.map(() => Math.random() * 100);
+---
+
+<div class="vote-results" hidden="true">
+  <h2>Results</h2>
+  <ul>
+    {
+      alternatives.map((alternative, index) => (
+        <li>
+          {alternative}:{" "}
+          {(
+            (votes[index] / votes.reduce((prev, curr) => prev + curr, 0)) *
+            100
+          ).toFixed(2)}
+          %
+        </li>
+      ))
+    }
+  </ul>
+</div>
+<form class="vote-form">
+  <h2>{question}</h2>
+  <ul>
+    {
+      alternatives.map((alternative) => (
+        <li>
+          <input
+            type="radio"
+            id={alternative}
+            name="vote"
+            value={alternative}
+          />
+          <label for={alternative}>{alternative}</label>
+        </li>
+      ))
+    }
+  </ul>
+  <button type="submit">Vote</button>
+</form>
+
+<script>
+  const voteForm = document.querySelector(".vote-form");
+  const voteResults = document.querySelector(".vote-results");
+
+  if (voteForm !== null && voteResults !== null) {
+    voteForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      voteForm.setAttribute("hidden", "true");
+      voteResults.removeAttribute("hidden");
+    });
+  }
+</script>
+
+<style>
+  .vote-results,
+  .vote-form {
+    background-color: lightblue;
+    padding: 0.5rem 2rem 2rem 2rem;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+</style>
