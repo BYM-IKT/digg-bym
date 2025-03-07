@@ -19,7 +19,7 @@ let votes = alternatives.map(() => Math.random() * 100);
           {(
             (votes[index] / votes.reduce((prev, curr) => prev + curr, 0)) *
             100
-          ).toFixed(2)}
+          ).toFixed(2) + 1}
           %
         </li>
       ))
