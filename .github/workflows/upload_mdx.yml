@@ -1,0 +1,30 @@
+name: Upload MDX Page
+
+on:
+  workflow_dispatch:
+    inputs:
+      filename:
+        description: 'Name of the .mdx file (e.g. hello.mdx)'
+        required: true
+      content:
+        description: 'Base64-encoded MDX content'
+        required: true
+
+jobs:
+  upload_mdx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      - name: Decode and write MDX file
+        run: |
+          echo "${{ github.event.inputs.content }}" | base64 -d > ./src/pages/posts/${{ github.event.inputs.filename }}
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add ./src/pages/posts/${{ github.event.inputs.filename }}
+          git commit -m "Add MDX page: ${{ github.event.inputs.filename }}"
+          git push
