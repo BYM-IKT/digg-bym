@@ -19,35 +19,48 @@ import LederNewsfeed from "@components/newsfeed/LederNewsfeed.astro";
 import MusikkanmeldelseNewsfeed from "@components/newsfeed/MusikkanmeldelseNewsfeed.astro";
 import TemaserieNewsfeed from "@components/newsfeed/TemaserieNewsfeed.astro";
 import NekrologNewsfeed from "@components/newsfeed/NekrologNewsfeed.astro";
+import { getPosts } from "src/lib/cms-api";
+import CmsNewsfeed from "@components/newsfeed/CmsNewsfeed.astro";
 
-const posts = await Astro.glob<Frontmatter>("../pages/posts/*.mdx");
+const mdxPosts = await Astro.glob<Frontmatter>("../pages/posts/*.mdx");
+const cmsPosts = await getPosts();
 const getUrl = (url?: string) => (url ? url + "/index.html" : undefined);
-const filterArticles = (post: MDXInstance<Frontmatter>) => {
+const filterArticles = (publishedDate: string, isDraft: boolean) => {
   const hasBeenPublished =
-    new Date(post.frontmatter.publishedAt).getTime() < new Date().getTime();
+    new Date(publishedDate).getTime() < new Date().getTime();
   const isInDevelopment = import.meta.env.DEV;
 
   if (isInDevelopment) return true;
-  if (post.frontmatter.draft === true) return false;
+  if (isDraft === true) return false;
   if (!hasBeenPublished) return false;
 
   return true;
 };
-const sortArticles = (
-  a: MDXInstance<Frontmatter>,
-  b: MDXInstance<Frontmatter>
-) =>
-  new Date(b.frontmatter.publishedAt).getTime() -
-  new Date(a.frontmatter.publishedAt).getTime();
+const sortArticles = (ApublishedAt: string, BpublishedAt: string) =>
+  new Date(BpublishedAt).getTime() - new Date(ApublishedAt).getTime();
 ---
 
 <Layout title="Digitaliseringsgevinst'n">
   <div class="newsfeed-wrapper">
     <h1 class="sr-only">Digitaliseringsgevinsten - nyheter</h1>
     {
-      posts
-        .filter(filterArticles)
-        .sort(sortArticles)
+      cmsPosts
+        .filter(({ frontmatter }) =>
+          filterArticles(frontmatter.publishedAt, frontmatter.draft ?? false)
+        )
+        .sort((a, b) =>
+          sortArticles(a.frontmatter.publishedAt, b.frontmatter.publishedAt)
+        )
+        .map((post) => <CmsNewsfeed {...post.frontmatter} />)
+    }
+    {
+      mdxPosts
+        .filter(({ frontmatter }) =>
+          filterArticles(frontmatter.publishedAt, frontmatter.draft ?? false)
+        )
+        .sort((a, b) =>
+          sortArticles(a.frontmatter.publishedAt, b.frontmatter.publishedAt)
+        )
         .map((post) => (
           <>
             {post.frontmatter.type === PostType.Artikkel && (

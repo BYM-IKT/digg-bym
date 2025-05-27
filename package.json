@@ -12,8 +12,11 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^3.1.9",
+    "@types/js-yaml": "^4.0.9",
     "astro": "^4.16.13",
     "canvas-confetti": "^1.9.3",
+    "js-yaml": "^4.1.0",
+    "marked": "^15.0.12",
     "typescript": "^5.6.3"
   }
 }

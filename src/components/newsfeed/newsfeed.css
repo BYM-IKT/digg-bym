@@ -39,7 +39,7 @@
 .newsfeed-post-link {
   display: block;
   color: inherit;
-  grid-column: span calc(12 / var(--elementsPerRow));
+  grid-column: span calc(12 / var(--elementsPerRow, 1));
   @media (max-width: 1200px) {
     grid-column: span 12;
   }

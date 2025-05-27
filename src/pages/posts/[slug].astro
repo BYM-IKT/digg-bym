@@ -1,0 +1,60 @@
+---
+// https://docs.astro.build/en/guides/markdown-content/
+import Layout from "@layouts/Layout.astro";
+import { getPosts } from "src/lib/cms-api";
+import ArticleImage from "@components/ArticleImage.astro";
+import { toDateString } from "src/lib/utils";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+
+  return posts.map((post) => ({
+    params: { slug: post.frontmatter.slug ?? "/404" },
+    props: { data: post.frontmatter, html: post.html },
+  }));
+}
+
+const { data, html } = Astro.props;
+---
+
+<Layout>
+  <article set:html={html}>
+    <h1>{data.title}</h1>
+    <p class="ingress">{data.summary}</p>
+    <span class="authored-by"
+      >Skrevet av {data.author}
+      <time>{toDateString(data.publishedAt)}</time></span
+    >
+    {
+      data.mainImageUrl && (
+        <ArticleImage
+          alt=""
+          src={data.mainImageUrl}
+          caption={data.mainImageCaption ?? ""}
+        />
+      )
+    }
+  </article>
+</Layout>
+
+<style>
+  article {
+    margin: 0;
+    min-width: 500px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 4rem;
+  }
+
+  .authored-by {
+    font-size: 1.25rem;
+    color: #666;
+  }
+
+  .ingress {
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
+</style>
