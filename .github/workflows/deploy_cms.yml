@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - feat-digg-cms
     paths:
       - 'cms/**'
   workflow_dispatch:
