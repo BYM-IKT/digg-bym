@@ -24,7 +24,7 @@ jobs:
         run: yarn build
       # exludes '/admin'-folder to prevent nuking CMS build
       - name: Deploy to S3
-        run: aws s3 sync --delete ./dist/ s3://${{ secrets.BUCKET_ID }} --delete --exclude "admin/*"
+        run: aws s3 sync ./dist/ s3://${{ secrets.BUCKET_ID }} --delete --exclude "admin/*"
       - name: Create CloudFront invalidation
         run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*"
       - name: Create CloudFront invalidation admin client
