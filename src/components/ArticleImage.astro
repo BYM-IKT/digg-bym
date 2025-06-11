@@ -2,11 +2,13 @@
 interface Props {
   src: string;
   alt: string;
-  caption: {
-    heading: string;
-    text: string;
-    photographer: string;
-  };
+  caption:
+    | {
+        heading: string;
+        text: string;
+        photographer: string;
+      }
+    | string;
   width?: string;
   captionWidth?: string;
   float?: "left" | "right";
@@ -22,14 +24,17 @@ const {
   float = "none",
   padding = "0",
 } = Astro.props;
+
+const captionString =
+  typeof caption === "string"
+    ? caption
+    : `${caption.heading.toUpperCase()}: ${caption.text} Foto: ${caption.photographer}`;
 ---
 
 <figure>
   <img src={src} alt={alt} />
   <figcaption>
-    {
-      `${caption.heading.toUpperCase()}: ${caption.text} Foto: ${caption.photographer}`
-    }
+    {captionString}
   </figcaption>
 </figure>
 
