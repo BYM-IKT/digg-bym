@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<link id="theme-style" rel="stylesheet" href="light.css">
+	<style>
+		[data-theme="dark"] .milkdown {
+			--crepe-color-background: rgb(28, 33, 43.5) !important;
+			--crepe-color-on-background: #eae1d9 !important;
+			--crepe-color-surface: #18120b !important;
+			--crepe-color-surface-low: #201b13 !important;
+			--crepe-color-on-surface: #ede0d4 !important;
+			--crepe-color-on-surface-variant: #d3c4b4 !important;
+			--crepe-color-outline: #9c8f80 !important;
+			--crepe-color-primary: #f4bd6f !important;
+			--crepe-color-secondary: #56442a !important;
+			--crepe-color-on-secondary: #fbdebc !important;
+			--crepe-color-inverse: #ede0d4 !important;
+			--crepe-color-on-inverse: #362f27 !important;
+			--crepe-color-inline-code: #ffb4ab !important;
+			--crepe-color-error: #ffb4ab !important;
+			--crepe-color-hover: #251f17 !important;
+			--crepe-color-selected: #3b342b !important;
+			--crepe-color-inline-area: #3f3830 !important;
+
+			--crepe-font-title: Georgia, Cambria, 'Times New Roman', Times, serif !important;
+			--crepe-font-default: 'Open Sans', Arial, Helvetica, sans-serif !important;
+			--crepe-font-code: Fira Code, Menlo, Monaco, 'Courier New', Courier, monospace !important;
+
+			--crepe-shadow-1: 0px 1px 2px 0px rgba(255, 255, 255, 0.3), 0px 1px 3px 1px rgba(255, 255, 255, 0.15) !important;
+			--crepe-shadow-2: 0px 1px 2px 0px rgba(255, 255, 255, 0.3), 0px 2px 6px 2px rgba(255, 255, 255, 0.15) !important;
+		}
+	</style>
+	<script>
+		const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+
+		// Optional: Listen for changes (e.g. system theme toggles while app is open)
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+			document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+		});
+	</script>
+	%sveltekit.head%
+
+</head>
+
+
+<body data-sveltekit-preload-data="hover">
+	<div>
+		%sveltekit.body%
+	</div>
+</body>
+
+</html>
