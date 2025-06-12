@@ -1,0 +1,45 @@
+name: Deploy CMS
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'cms/**'
+  workflow_dispatch:
+defaults:
+  run:
+    working-directory: ./cms
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+            version: 10
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+            cache-dependency-path: cms/pnpm-lock.yaml
+            node-version: ${{ matrix.node-version }}
+            cache: 'pnpm'
+      - name: Install modules
+        run: pnpm install
+      - name: Build application
+        run: pnpm build
+        # deletes only files in folder /admin
+      - name: Deploy to S3
+        run: aws s3 sync --delete ./build/ s3://${{ secrets.BUCKET_ID }}/admin 
+      - name: Create CloudFront invalidation CMS client
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID_ADMIN_CLIENT }} --paths "/*"
