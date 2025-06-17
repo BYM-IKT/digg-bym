@@ -22,9 +22,7 @@ export type CmsPost = {
 export const parseBase64Markdown = (base64String: string) => atob(base64String);
 
 function decodeBase64Utf8(base64Str: string) {
-  const binary = atob(base64Str); // decode base64 to binary string
-  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0)); // convert binary to byte array
-  return new TextDecoder("utf-8").decode(bytes); // decode UTF-8
+  return decodeURIComponent(atob(base64Str)); // decode base64 to binary string
 }
 
 export const trimBucketPrefix = (key: string) => {
