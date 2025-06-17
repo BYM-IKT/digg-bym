@@ -67,14 +67,14 @@
       >Author
       <input id="author" value={metadata.author} on:input={onInput} />
     </label>
-    <label for="summary"
-      >Summary
-      <textarea
-        style="height:150px;"
-        id="summary"
-        value={metadata.summary}
+    <label for="publishedAt"
+      >Publiseringsdato
+      <input
+        id="publishedAt"
+        type="datetime-local"
+        value={metadata.publishedAt}
         on:input={onInput}
-      ></textarea>
+      />
     </label>
   </fieldset>
   <fieldset class="grid">
@@ -84,20 +84,25 @@
     </label>
 
     {#if metadata.mainImageUrl}
-      <img class="preview" src={metadata.mainImageUrl} alt="Image preview" />
+      <img class="preview" src={metadata.mainImageUrl} alt="header preview" />
       <label for="mainImageCaption"
         >Legg til caption
-        <textarea id="mainImageCaption" on:input={onInput}></textarea>
+        <textarea
+          style="height: 150px;"
+          id="mainImageCaption"
+          on:input={onInput}
+          value={metadata.mainImageCaption}
+        ></textarea>
       </label>
     {/if}
-    <label for="publishedAt"
-      >Publiseringsdato
-      <input
-        id="publishedAt"
-        type="datetime-local"
-        value={metadata.publishedAt}
+    <label for="summary"
+      >Summary
+      <textarea
+        style="height:150px;"
+        id="summary"
+        value={metadata.summary}
         on:input={onInput}
-      />
+      ></textarea>
     </label>
     <label for="utkast"
       >Utkast (wip)<input

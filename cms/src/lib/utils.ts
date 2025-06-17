@@ -28,5 +28,50 @@ export const isDarMode = (w: Window & typeof globalThis) =>
 export const buildPath = (...str: string[]) => str.join("/");
 
 export function utf8ToBase64(str: string) {
-  return btoa(unescape(encodeURIComponent(str)));
+  const uriEncoded = encodeURIComponent(str);
+  return btoa(uriEncoded);
+}
+
+export function downloadFile(file: File) {
+  const url = URL.createObjectURL(file);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = file.name;
+  a.click();
+
+  URL.revokeObjectURL(url); // Clean up
+}
+
+export function decodeBase64Utf8(base64Str: string) {
+  return decodeURIComponent(atob(base64Str));
+}
+
+export const trimBucketPrefix = (key: string) => {
+  const prefix = "markdown/";
+  const suffix = ".mdx";
+  return key.replace(prefix, "").replace(suffix, "");
+};
+
+export const convertFileToBase64 = (file: File): Promise<string> => {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(new Blob([file], { type: file.type }));
+    reader.onload = () =>
+      resolve(
+        reader.result?.toString() ||
+          //.replace(/^data:(.*,)?/, "")
+          ""
+      );
+    reader.onerror = (error) => reject(error);
+  });
+};
+
+export function getBucketKey(type: "md" | "image") {
+  switch (type) {
+    case "md":
+      return "markdown";
+    case "image":
+      return "images";
+  }
 }

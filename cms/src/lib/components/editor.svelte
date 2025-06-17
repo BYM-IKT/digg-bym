@@ -44,7 +44,6 @@
           ...defaultConfig,
           onUpload: async (file) => {
             const id = await onUpload(file);
-            //downloadFile(file);
             // Here you can handle the file upload
             // For example, you can upload it to a server or do something else with it
             const url = buildPath(CMS_CDN_URL, id);

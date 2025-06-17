@@ -1,14 +1,22 @@
 <script lang="ts">
   import { page } from "$app/state";
-  import { getBucketKey, uploadMarkdown, uploadImage } from "$lib/api";
+  import {
+    fetchFile,
+    publishWorkflow,
+    uploadImage,
+    uploadMarkdown,
+  } from "$lib/api";
 
   import MilkdownEditor from "$lib/components/editor.svelte";
   import Metadata from "$lib/components/metadata.svelte";
   import { parse } from "$lib/frontmatter-parse";
   import { formatMetadata } from "$lib/metadata";
-  import { postData } from "$lib/stores";
+  //import { postData } from "$lib/stores";
+  import { createQuery } from "@tanstack/svelte-query";
+
   import type { MetadataProps } from "$lib/types";
-  import { buildPath } from "$lib/utils";
+  import { buildPath, getBucketKey } from "$lib/utils";
+  import { toast } from "@zerodevx/svelte-toast";
 
   let slug = page.params.slug;
 
@@ -20,11 +28,20 @@
   };
   let markdownContent = "";
 
-  postData.subscribe((value) => {
-    const { data, content } = parse<MetadataProps>(value);
+  const query = createQuery({
+    queryKey: ["post", slug],
+    queryFn: () => fetchFile(slug.concat(".mdx"), "md"),
+  });
 
-    metadataState = { ...data };
-    markdownContent = content;
+  query.subscribe(({ isFetched, data: serverPost }) => {
+    if (isFetched && serverPost) {
+      console.log("post", serverPost);
+
+      const { data, content } = parse<MetadataProps>(serverPost.base64);
+
+      metadataState = { ...data };
+      markdownContent = content;
+    }
   });
 
   function updatePost() {
@@ -34,12 +51,14 @@
       return;
     }
 
-    const fileName = buildPath(
-      getBucketKey("md"),
-      metadataState.slug.concat(".mdx")
-    );
+    uploadMarkdown(metadataState.slug, mergedFile);
+  }
 
-    uploadMarkdown(fileName, mergedFile);
+  async function handlePublish() {
+    const res = await publishWorkflow();
+    if (res.ok) {
+      toast.push("Artikkel publisert");
+    }
   }
 
   async function onUpload(file: File) {
@@ -48,8 +67,12 @@
 </script>
 
 <h1>Blog post: {slug}</h1>
+<div style="text-align: right;">
+  <button on:click={updatePost}>Lagre utkast</button>
+  <button on:click={handlePublish}>Publiser </button>
+</div>
 <Metadata bind:metadata={metadataState} />
-<button on:click={updatePost}>Lagre</button>
+
 <h2>Innhold</h2>
 <p>Her kan du redigere riktekst-innhold og bilder</p>
 <MilkdownEditor {onUpload} bind:content={markdownContent} />

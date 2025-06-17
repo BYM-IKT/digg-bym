@@ -1,19 +1,16 @@
 <script lang="ts">
-  import { fetchPosts } from "$lib/api";
-  import { postData } from "$lib/stores";
+  import { fetchKeys, fetchPosts } from "$lib/api";
   import { createQuery } from "@tanstack/svelte-query";
 
   const query = createQuery({
     queryKey: ["todos"],
-    queryFn: () => fetchPosts(),
+    queryFn: () => fetchKeys(),
   });
-  function updatePostStore(string: string) {
-    postData.set(string);
-  }
 </script>
 
 <h1>Artikler</h1>
 <a class="contrast" href="/posts/new">Legg til ny artikkel</a>
+<button onclick={() => fetchKeys()}>fetch keys</button>
 <div>
   {#if $query.isLoading}
     <p>Loading...</p>
@@ -29,12 +26,7 @@
       <tbody>
         {#each $query.data as post}
           <tr>
-            <td
-              ><a
-                onclick={() => updatePostStore(post.base64)}
-                href={`posts/${post.key}`}>{post.key}</a
-              ></td
-            >
+            <td><a href={`posts/${post}`}>{post.replace(".mdx", "")}</a></td>
           </tr>
         {/each}
       </tbody>

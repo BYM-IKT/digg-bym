@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { getBucketKey, uploadMarkdown } from "$lib/api";
+  import { uploadMarkdown } from "$lib/api";
   import MilkdownEditor from "$lib/components/editor.svelte";
   import Metadata from "$lib/components/metadata.svelte";
   import { formatMetadata } from "$lib/metadata";
   import type { MetadataProps } from "$lib/types";
-  import { buildPath, formatDateToLocalISO } from "$lib/utils";
+  import { formatDateToLocalISO } from "$lib/utils";
 
   let metadataState: MetadataProps = $state({
     title: "",
@@ -24,12 +24,8 @@
     }
     const metadata = formatMetadata(metadataState);
     const mergedFile = metadata.concat(markdownContent);
-    const fileName = buildPath(
-      getBucketKey("md"),
-      metadataState.slug.concat(".mdx")
-    );
 
-    uploadMarkdown(fileName, mergedFile);
+    uploadMarkdown(metadataState.slug, mergedFile);
   }
 
   async function uploadImage(file: File) {
