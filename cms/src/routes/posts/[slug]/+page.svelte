@@ -66,13 +66,18 @@
   }
 </script>
 
-<h1>Blog post: {slug}</h1>
-<div style="text-align: right;">
-  <button on:click={updatePost}>Lagre utkast</button>
-  <button on:click={handlePublish}>Publiser </button>
-</div>
-<Metadata bind:metadata={metadataState} />
+{#if $query.isSuccess}
+  <h1>Blog post: {slug}</h1>
+  <div style="text-align: right;">
+    <button on:click={updatePost}>Lagre utkast</button>
+    <button on:click={handlePublish}>Publiser </button>
+  </div>
+  <Metadata bind:metadata={metadataState} />
 
-<h2>Innhold</h2>
-<p>Her kan du redigere riktekst-innhold og bilder</p>
-<MilkdownEditor {onUpload} bind:content={markdownContent} />
+  <h2>Innhold</h2>
+  <p>Her kan du redigere riktekst-innhold og bilder</p>
+
+  <MilkdownEditor {onUpload} bind:content={markdownContent} />
+{:else}
+  <p>Laster inn post...</p>
+{/if}
