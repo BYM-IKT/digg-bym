@@ -22,7 +22,10 @@ import NekrologNewsfeed from "@components/newsfeed/NekrologNewsfeed.astro";
 import { getPosts } from "src/lib/cms-api";
 import CmsNewsfeed from "@components/newsfeed/CmsNewsfeed.astro";
 
-const mdxPosts = await Astro.glob<Frontmatter>("../pages/posts/*.mdx");
+const mdxPosts = Object.values(
+  import.meta.glob("../pages/posts/*.mdx", { eager: true })
+) as MDXInstance<Frontmatter>[];
+
 const cmsPosts = await getPosts();
 const getUrl = (url?: string) => (url ? url + "/index.html" : undefined);
 const filterArticles = (publishedDate: string, isDraft: boolean) => {
