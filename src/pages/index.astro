@@ -1,44 +1,32 @@
 ---
-import type { MDXInstance } from "astro";
-import {
-  PostType,
-  type ArtikkelFrontmatter,
-  type Frontmatter,
-  type LederFrontmatter,
-  type MatspaltenFrontmatter,
-  type MusikkanmeldelseFrontmatter,
-  type NekrologFrontmatter,
-  type ReisebrevFrontmatter,
-  type TemaserieFrontmatter,
-} from "@interfaces/frontmatter";
-import Layout from "@layouts/Layout.astro";
 import ArtikkelNewsfeed from "@components/newsfeed/ArtikkelNewsfeed.astro";
-import MatspaltenNewsfeed from "@components/newsfeed/MatspaltenNewsfeed.astro";
-import ReisebrevNewsfeed from "@components/newsfeed/ReisebrevNewsfeed.astro";
-import LederNewsfeed from "@components/newsfeed/LederNewsfeed.astro";
-import MusikkanmeldelseNewsfeed from "@components/newsfeed/MusikkanmeldelseNewsfeed.astro";
-import TemaserieNewsfeed from "@components/newsfeed/TemaserieNewsfeed.astro";
-import NekrologNewsfeed from "@components/newsfeed/NekrologNewsfeed.astro";
-import { getPosts } from "src/lib/cms-api";
 import CmsNewsfeed from "@components/newsfeed/CmsNewsfeed.astro";
+import LederNewsfeed from "@components/newsfeed/LederNewsfeed.astro";
+import MatspaltenNewsfeed from "@components/newsfeed/MatspaltenNewsfeed.astro";
+import MusikkanmeldelseNewsfeed from "@components/newsfeed/MusikkanmeldelseNewsfeed.astro";
+import NekrologNewsfeed from "@components/newsfeed/NekrologNewsfeed.astro";
+import ReisebrevNewsfeed from "@components/newsfeed/ReisebrevNewsfeed.astro";
+import TemaserieNewsfeed from "@components/newsfeed/TemaserieNewsfeed.astro";
+import { PostType } from "@interfaces/frontmatter";
+import Layout from "@layouts/Layout.astro";
 
-const mdxPosts = Object.values(
-  import.meta.glob("../pages/posts/*.mdx", { eager: true })
-) as MDXInstance<Frontmatter>[];
+import { getCollection } from "astro:content";
+const mdxPosts = await getCollection("mxdPosts");
+const cmsPosts = await getCollection("cmsPosts");
 
-const cmsPosts = await getPosts();
 const getUrl = (url?: string) => (url ? url + "/index.html" : undefined);
 const filterArticles = (publishedDate: string, isDraft: boolean) => {
   const hasBeenPublished =
     new Date(publishedDate).getTime() < new Date().getTime();
   const isInDevelopment = import.meta.env.DEV;
 
-  if (isInDevelopment) return true;
+  //if (isInDevelopment) return true;
   if (isDraft === true) return false;
   if (!hasBeenPublished) return false;
 
   return true;
 };
+
 const sortArticles = (ApublishedAt: string, BpublishedAt: string) =>
   new Date(BpublishedAt).getTime() - new Date(ApublishedAt).getTime();
 ---
@@ -48,65 +36,40 @@ const sortArticles = (ApublishedAt: string, BpublishedAt: string) =>
     <h1 class="sr-only">Digitaliseringsgevinsten - nyheter</h1>
     {
       cmsPosts
-        .filter(({ frontmatter }) =>
-          filterArticles(frontmatter.publishedAt, frontmatter.draft ?? false)
+        .filter(({ data }) =>
+          filterArticles(data.publishedAt, data.draft ?? false)
         )
-        .sort((a, b) =>
-          sortArticles(a.frontmatter.publishedAt, b.frontmatter.publishedAt)
-        )
-        .map((post) => <CmsNewsfeed {...post.frontmatter} />)
+        .sort((a, b) => sortArticles(a.data.publishedAt, b.data.publishedAt))
+        .map((post) => <CmsNewsfeed {...post.data} />)
     }
     {
       mdxPosts
-        .filter(({ frontmatter }) =>
-          filterArticles(frontmatter.publishedAt, frontmatter.draft ?? false)
+        .filter(({ data }) =>
+          filterArticles(data.publishedAt, data.draft ?? false)
         )
-        .sort((a, b) =>
-          sortArticles(a.frontmatter.publishedAt, b.frontmatter.publishedAt)
-        )
+        .sort((a, b) => sortArticles(a.data.publishedAt, b.data.publishedAt))
         .map((post) => (
           <>
-            {post.frontmatter.type === PostType.Artikkel && (
-              <ArtikkelNewsfeed
-                {...(post.frontmatter as ArtikkelFrontmatter)}
-                url={getUrl(post.url)}
-              />
+            {post.data.type === PostType.Artikkel && (
+              <ArtikkelNewsfeed {...post.data} url={getUrl(post.id)} />
             )}
-            {post.frontmatter.type === PostType.Matspalten && (
-              <MatspaltenNewsfeed
-                {...(post.frontmatter as MatspaltenFrontmatter)}
-                url={getUrl(post.url)}
-              />
+            {post.data.type === PostType.Matspalten && (
+              <MatspaltenNewsfeed {...post.data} url={getUrl(post.id)} />
             )}
-            {post.frontmatter.type === PostType.Reisebrev && (
-              <ReisebrevNewsfeed
-                {...(post.frontmatter as ReisebrevFrontmatter)}
-                url={getUrl(post.url)}
-              />
+            {post.data.type === PostType.Reisebrev && (
+              <ReisebrevNewsfeed {...post.data} url={getUrl(post.id)} />
             )}
-            {post.frontmatter.type === PostType.Leder && (
-              <LederNewsfeed
-                {...(post.frontmatter as LederFrontmatter)}
-                url={getUrl(post.url)}
-              />
+            {post.data.type === PostType.Leder && (
+              <LederNewsfeed {...post.data} url={getUrl(post.id)} />
             )}
-            {post.frontmatter.type === PostType.Musikkanmeldelse && (
-              <MusikkanmeldelseNewsfeed
-                {...(post.frontmatter as MusikkanmeldelseFrontmatter)}
-                url={getUrl(post.url)}
-              />
+            {post.data.type === PostType.Musikkanmeldelse && (
+              <MusikkanmeldelseNewsfeed {...post.data} url={getUrl(post.id)} />
             )}
-            {post.frontmatter.type === PostType.Temaserie && (
-              <TemaserieNewsfeed
-                {...(post.frontmatter as TemaserieFrontmatter)}
-                url={getUrl(post.url)}
-              />
+            {post.data.type === PostType.Temaserie && (
+              <TemaserieNewsfeed {...post.data} url={getUrl(post.id)} />
             )}
-            {post.frontmatter.type === PostType.Nekrolog && (
-              <NekrologNewsfeed
-                {...(post.frontmatter as NekrologFrontmatter)}
-                url={getUrl(post.url)}
-              />
+            {post.data.type === PostType.Nekrolog && (
+              <NekrologNewsfeed {...post.data} url={getUrl(post.id)} />
             )}
           </>
         ))
