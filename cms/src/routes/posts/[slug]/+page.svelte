@@ -20,13 +20,14 @@
 
   let slug = page.params.slug;
 
-  let metadataState: MetadataProps = {
+  let metadataState = $state<MetadataProps>({
     title: "",
     slug: "",
     author: "",
     summary: "",
-  };
-  let markdownContent = "";
+    draft: false,
+  });
+  let markdownContent = $state("");
 
   const query = createQuery({
     queryKey: ["post", slug],
@@ -35,16 +36,16 @@
 
   query.subscribe(({ isFetched, data: serverPost }) => {
     if (isFetched && serverPost) {
-      console.log("post", serverPost);
+      console.log("post", serverPost.base64);
 
       const { data, content } = parse<MetadataProps>(serverPost.base64);
 
-      metadataState = { ...data };
+      metadataState = { ...data, draft: Boolean(data.draft) };
       markdownContent = content;
     }
   });
 
-  function updatePost() {
+  function handleSave() {
     const metadata = formatMetadata(metadataState);
     const mergedFile = metadata.concat(markdownContent);
     if (!metadataState.slug) {
@@ -69,8 +70,8 @@
 {#if $query.isSuccess}
   <h1>Blog post: {slug}</h1>
   <div style="text-align: right;">
-    <button on:click={updatePost}>Lagre utkast</button>
-    <button on:click={handlePublish}>Publiser </button>
+    <button onclick={handleSave}>Lagre utkast</button>
+    <button onclick={handlePublish}>Publiser </button>
   </div>
   <Metadata bind:metadata={metadataState} />
 

@@ -8,31 +8,26 @@
   // available themes: frame, classic, nord, frame-dark, classic-dark, nord-dark
 
   import { imageBlockConfig } from "@milkdown/kit/component/image-block";
-  import { commonmark } from "@milkdown/kit/preset/commonmark";
 
   import { CMS_CDN_URL } from "$lib/api";
   import { buildPath } from "$lib/utils";
   import { onMount } from "svelte";
 
-  export let content: string = "";
+  let { content = $bindable(), onUpload } = $props<{
+    content?: string;
+    onUpload: (file: File) => Promise<string>;
+  }>();
 
   let editorRoot: HTMLDivElement;
   let crepe: Crepe | null = null;
-
-  export let onUpload: (file: File) => Promise<string>; // returns id of the uploaded file
 
   onMount(() => {
     crepe = new Crepe({
       root: editorRoot,
       defaultValue: content,
-      features: {
-        [Crepe.Feature.ImageBlock]: true,
-        [Crepe.Feature.BlockEdit]: true,
-        //[Crepe.Feature.LinkTooltip]: true,
-      },
     });
 
-    crepe.editor.use(commonmark);
+    //crepe.editor.use(commonmark).use(gfm);
 
     crepe.create().then(() => {
       console.log("Editor created");

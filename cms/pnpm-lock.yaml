@@ -21,8 +21,8 @@ importers:
         specifier: ^7.11.0
         version: 7.11.0
       '@tanstack/svelte-query':
-        specifier: ^5.76.2
-        version: 5.76.2(svelte@5.33.1)
+        specifier: ^5.80.7
+        version: 5.80.7(svelte@5.33.1)
       commonmark:
         specifier: link:@milkdown/kit/preset/commonmark
         version: link:@milkdown/kit/preset/commonmark
@@ -629,11 +629,11 @@ packages:
       svelte: ^5.0.0
       vite: ^6.0.0
 
-  '@tanstack/query-core@5.76.2':
-    resolution: {integrity: sha512-PFGwWh5ss9cJQ67l6bZ7hqXbisX2gy13G2jP+VGY1bgdbCfOMWh6UBVnN62QbFXro6CCoX9hYzTnZHr6Rz00YQ==}
+  '@tanstack/query-core@5.80.7':
+    resolution: {integrity: sha512-s09l5zeUKC8q7DCCCIkVSns8zZrK4ZDT6ryEjxNBFi68G4z2EBobBS7rdOY3r6W1WbUDpc1fe5oY+YO/+2UVUg==}
 
-  '@tanstack/svelte-query@5.76.2':
-    resolution: {integrity: sha512-uKTl5OmUnF5bU7pd692T+rnVKfMTQ86B6SWHTwkM3obeakOe8XLnbGh9plAxV5yNS/gJTkaiNeyi30Y09sh28A==}
+  '@tanstack/svelte-query@5.80.7':
+    resolution: {integrity: sha512-QTVW6eBkKc0n4rjXNBhuJkVwY1xu/xVnOnhTtsW9RQOlSZLl14uQwXB23fV2cD6G+Ibo34OxhKAgyfLuEinI9w==}
     peerDependencies:
       svelte: ^3.54.0 || ^4.0.0 || ^5.0.0
 
@@ -2170,11 +2170,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tanstack/query-core@5.76.2': {}
+  '@tanstack/query-core@5.80.7': {}
 
-  '@tanstack/svelte-query@5.76.2(svelte@5.33.1)':
+  '@tanstack/svelte-query@5.80.7(svelte@5.33.1)':
     dependencies:
-      '@tanstack/query-core': 5.76.2
+      '@tanstack/query-core': 5.80.7
       svelte: 5.33.1
 
   '@types/cookie@0.6.0': {}

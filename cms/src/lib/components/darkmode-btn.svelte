@@ -15,13 +15,14 @@
   });
 
   // Subscribe to darkMode to toggle class on <html>
-  $: {
-    browser &&
+  $effect(() => {
+    if (browser) {
       document?.documentElement.setAttribute(
         "data-theme",
         $darkMode ? "dark" : "light"
       );
-  }
+    }
+  });
 
   darkMode.subscribe((v) => {
     value = v;
