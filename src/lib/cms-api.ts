@@ -83,4 +83,4 @@ export async function getCmsPost(id: string) {
 }
 
 export const getArticleUrl = (slug: string | undefined) =>
-  slug ? `/posts/${slug}` : "/";
+  slug ? `/posts/${slug}/index.html` : "/";
