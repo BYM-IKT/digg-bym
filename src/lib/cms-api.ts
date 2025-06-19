@@ -1,6 +1,5 @@
-import { marked } from "marked";
-import { parseFrontmatter } from "../lib/frontmatter-parse";
 import type { Loader, LoaderContext } from "astro/loaders";
+import { parseFrontmatter } from "../lib/frontmatter-parse";
 
 export type CmsMetadata = {
   type: number;
