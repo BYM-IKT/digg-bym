@@ -11,11 +11,16 @@ export function formatMetadata(props: MetadataProps) {
   ) as (keyof MetadataProps)[];
 
   for (const k of keys) {
-    console.log(typeof k);
+    let val = props[k];
 
-    const val = props[k];
-    if (k == props[k]) continue;
-    sb.append(`${k}: "${props[k]}"\n`);
+    if (val === "true" || val === "false") {
+      val = Boolean(val);
+    }
+    // legger til "" rundt tekst hvis det er en string
+    const formatValue = typeof val === "boolean" ? val : `"${val}"`;
+
+    if (k == val) continue;
+    sb.append(`${k}: ${formatValue}\n`);
   }
   //sb.append("draft: true\n");
   sb.append("---\n");

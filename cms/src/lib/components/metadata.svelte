@@ -7,7 +7,7 @@
     title: "",
     slug: "",
     author: "",
-    summary: "sa",
+    summary: "",
   };
 
   const onInput = (e: Event) => {
@@ -30,6 +30,8 @@
         metadata.publishedAt = value;
       case "mainImageCaption":
         metadata.mainImageCaption = value;
+      case "draft":
+        metadata.draft = !metadata.draft;
       default:
         break;
     }
@@ -104,12 +106,14 @@
         on:input={onInput}
       ></textarea>
     </label>
-    <label for="utkast"
-      >Utkast (wip)<input
+    <label for="draft"
+      >Utkast<input
         style="margin-left: 1rem;"
-        disabled
-        id="utkast"
+        id="draft"
+        value={metadata.draft}
+        checked={metadata.draft}
         type="checkbox"
+        on:input={onInput}
       />
     </label>
   </fieldset>

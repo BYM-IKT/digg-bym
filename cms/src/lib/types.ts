@@ -6,6 +6,7 @@ export type MetadataProps = {
   publishedAt?: string;
   mainImageUrl?: string;
   mainImageCaption?: string;
+  draft?: boolean;
   /*   snippetWithStringArgument: Snippet<[string]>;
   eventHandler: (arg: string) => void;
   [key: string]: unknown; */

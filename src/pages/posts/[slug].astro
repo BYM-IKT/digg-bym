@@ -1,36 +1,41 @@
 ---
 // https://docs.astro.build/en/guides/markdown-content/
-import Layout from "@layouts/Layout.astro";
-import { getPosts } from "src/lib/cms-api";
 import ArticleImage from "@components/ArticleImage.astro";
+import Layout from "@layouts/Layout.astro";
+import { getCollection } from "astro:content";
 import { toDateString } from "src/lib/utils";
 
 export async function getStaticPaths() {
-  const posts = await getPosts();
+  const cmsPosts = await getCollection("cmsPosts");
 
-  return posts.map((post) => ({
-    params: { slug: post.frontmatter.slug ?? "/404" },
-    props: { data: post.frontmatter, html: post.html },
+  return cmsPosts.map(({ id }) => ({
+    params: { slug: id },
   }));
 }
 
-const { data, html } = Astro.props;
+const { slug } = Astro.params;
+const cmsPosts = await getCollection("cmsPosts");
+const post = cmsPosts.find((p) => p.id === slug);
+
+if (!post) {
+  throw new Error(`Post with id ${slug} not found`);
+}
 ---
 
 <Layout>
-  <article set:html={html}>
-    <h1>{data.title}</h1>
-    <p class="ingress">{data.summary}</p>
+  <article set:html={post.rendered?.html}>
+    <h1>{post.data.title}</h1>
+    <p class="ingress">{post.data.summary}</p>
     <span class="authored-by"
-      >Skrevet av {data.author}
-      <time>{toDateString(data.publishedAt)}</time></span
+      >Skrevet av {post.data.author}
+      <time>{toDateString(post.data.publishedAt)}</time></span
     >
     {
-      data.mainImageUrl && (
+      post.data.mainImageUrl && (
         <ArticleImage
           alt=""
-          src={data.mainImageUrl}
-          caption={data.mainImageCaption ?? ""}
+          src={post.data.mainImageUrl}
+          caption={post.data.mainImageCaption ?? ""}
         />
       )
     }
