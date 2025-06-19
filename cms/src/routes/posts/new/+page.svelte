@@ -16,14 +16,12 @@
 
   let markdownContent = $state("");
 
-  function submitPost() {
-    console.log("hvorfor er jeg ehr");
-    return;
-    if (!metadataState.title) {
-      return alert("Post må tittel din dumbass");
-    }
+  function handleSave() {
     const metadata = formatMetadata(metadataState);
     const mergedFile = metadata.concat(markdownContent);
+    if (!metadataState.slug) {
+      return alert("Artikkel må ha tittel");
+    }
 
     uploadMarkdown(metadataState.slug, mergedFile);
   }
@@ -35,7 +33,7 @@
 
 <h1>Legg til ny artikkel</h1>
 <Metadata bind:metadata={metadataState} />
-<button onclick={submitPost}>Lagre</button>
+<button onclick={handleSave}>Lagre</button>
 <h2>Legg til markdown</h2>
 <p>Her kan du legge til riktekst og bilder</p>
 <MilkdownEditor bind:content={markdownContent} onUpload={uploadImage} />

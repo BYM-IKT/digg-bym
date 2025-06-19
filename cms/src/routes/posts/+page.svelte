@@ -10,7 +10,6 @@
 
 <h1>Artikler</h1>
 <a class="contrast" href="/posts/new">Legg til ny artikkel</a>
-<button onclick={() => fetchKeys()}>fetch keys</button>
 <div>
   {#if $query.isLoading}
     <p>Loading...</p>
