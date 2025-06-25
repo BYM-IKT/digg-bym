@@ -11,6 +11,8 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      TZ: Europe/Amsterdam
     strategy:
       matrix:
         node-version: [20]
