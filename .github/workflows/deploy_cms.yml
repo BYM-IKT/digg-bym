@@ -37,7 +37,7 @@ jobs:
       - name: Install modules
         run: pnpm install
       - name: Build application
-        run: pnpm build
+        run: pnpm build --mode production
         # deletes only files in folder /admin
       - name: Deploy to S3
         run: aws s3 sync --delete ./build/ s3://${{ secrets.BUCKET_ID }}/admin 
