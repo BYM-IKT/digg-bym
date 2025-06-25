@@ -7,14 +7,15 @@ import {
   trimBucketPrefix,
   utf8ToBase64,
 } from "./utils";
+import { fetchWithAuth } from "./auth";
 
 export const CMS_CDN_URL = "https://dclaw1ks4v8ju.cloudfront.net/images";
-const LAMBDA_API_URL =
+export const LAMBDA_API_URL =
   "https://yuga4madrxep2fy3kbpqkmkckq0bzitw.lambda-url.eu-west-1.on.aws";
 
 export async function uploadMarkdown(key: string, file: string) {
   const fullKey = key.concat(".mdx");
-  const res = await fetch(`${LAMBDA_API_URL}/uploadcontent`, {
+  const res = await fetchWithAuth(`${LAMBDA_API_URL}/uploadcontent`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -35,7 +36,7 @@ export async function uploadMarkdown(key: string, file: string) {
  * @returns
  */
 export async function fetchPosts() {
-  const res = await fetch(`${LAMBDA_API_URL}/fetchpages`);
+  const res = await fetchWithAuth(`${LAMBDA_API_URL}/fetchpages`);
   const json = (await res.json()) as PostDto[];
 
   const posts = json
@@ -55,7 +56,7 @@ export async function fetchPosts() {
  * Henter kun keys/navn på posts
  */
 export async function fetchKeys() {
-  const res = await fetch(`${LAMBDA_API_URL}/fetchkeys`);
+  const res = await fetchWithAuth(`${LAMBDA_API_URL}/fetchkeys`);
   const json = (await res.json()) as { key: string }[];
 
   const postsNames = json
@@ -68,19 +69,19 @@ export async function fetchKeys() {
 /**
  * @todo Implement this method
  */ export async function deleteFile() {
-  return await fetch(`${LAMBDA_API_URL}/deletecontent`, {
+  return await fetchWithAuth(`${LAMBDA_API_URL}/deletecontent`, {
     method: "POST",
   });
 }
 
 export async function publishWorkflow() {
-  return await fetch(`${LAMBDA_API_URL}/triggerworkflow`, {
+  return await fetchWithAuth(`${LAMBDA_API_URL}/triggerworkflow`, {
     method: "POST",
   });
 }
 
 export async function fetchFile(key: string, type: "md" | "img") {
-  const res = await fetch(`${LAMBDA_API_URL}/fetchcontent?key=` + key, {
+  const res = await fetchWithAuth(`${LAMBDA_API_URL}/fetchcontent?key=` + key, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -108,7 +109,7 @@ export async function uploadImage(file: File) {
   const base64 = (await convertFileToBase64(file)).split(",")[1];
 
   const filename = uuidv4().concat(file.name);
-  const res = await fetch(`${LAMBDA_API_URL}/uploadimage`, {
+  const res = await fetchWithAuth(`${LAMBDA_API_URL}/uploadimage`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
