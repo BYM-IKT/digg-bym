@@ -4,7 +4,15 @@
   import { SvelteToast } from "@zerodevx/svelte-toast";
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
-  import { checkAuth } from "$lib/stores/auth";
+  import { user } from "$lib/stores/auth";
+  import { userManager } from "$lib/auth";
+
+  export function checkAuth() {
+    if (!$user) {
+      return false;
+    }
+    return true;
+  }
 
   const queryClient = new QueryClient();
   let { children } = $props();
@@ -27,9 +35,14 @@
         <li><strong>DIGG CMS</strong></li>
       </ul>
       <ul>
+        <li>Hei {$user?.profile.name}</li>
         <li><a href="/">home</a></li>
         <li><a href="/posts">posts</a></li>
         <DarkmodeBtn />
+        <button
+          style="margin-left: 0.5rem;"
+          onclick={() => userManager.signoutRedirect()}>Logg out</button
+        >
       </ul>
     </nav>
   </header>

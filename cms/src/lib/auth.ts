@@ -1,30 +1,17 @@
-import { LAMBDA_API_URL } from "./api";
-import { Result } from "./result";
 
-type LoginInputDto = {
-  username: string;
-  password: string;
+import { UserManager } from "oidc-client-ts";
+
+const oidcConfig = {
+  authority: "https://sandbox-oslo.onelogin.com/oidc/2", // OneLogin issuer
+  client_id: "4a1e0220-33ec-013e-3f9e-5f10d2e0632e38599",
+  redirect_uri: "http://localhost:5173/callback", // adjust for prod
+  post_logout_redirect_uri: "http://localhost:5173/",
+  response_type: "code",
+  scope: "openid profile email",
+  automaticSilentRenew: true,
 };
-export async function login({
-  username,
-  password,
-}: LoginInputDto): Promise<Result<string, string>> {
-  const res = await fetch(LAMBDA_API_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
-  });
 
-  if (res.ok) {
-    const data = await res.json();
-    localStorage.setItem("token", data.token);
-    return Result.succeed(data.token);
-
-    // Navigate to protected route or update state
-  } else {
-    return Result.fail("Invalid credentials");
-  }
-}
+export const userManager = new UserManager(oidcConfig);
 
 export function fetchWithAuth(url: string, options: RequestInit = {}) {
   const token = localStorage.getItem("token");

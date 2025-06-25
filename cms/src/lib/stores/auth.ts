@@ -1,17 +1,9 @@
+import { userManager } from "$lib/auth";
+import type { User } from "oidc-client-ts";
 import { writable } from "svelte/store";
 
-export const user = writable(null);
+export const user = writable<User | null>(null);
 
-export function checkAuth() {
-  const token = localStorage.getItem("token");
-  if (!token) {
-    return false;
-  }
-  try {
-    const decoded = JSON.parse(atob(token.split(".")[1]));
-    user.set(decoded);
-    return true;
-  } catch {
-    return false;
-  }
-}
+userManager.getUser().then((u) => {
+  if (u && !u.expired) user.set(u);
+});

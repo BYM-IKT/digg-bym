@@ -36,8 +36,6 @@
 
   query.subscribe(({ isFetched, data: serverPost }) => {
     if (isFetched && serverPost) {
-      console.log("post", serverPost.base64);
-
       const { data, content } = parse<MetadataProps>(serverPost.base64);
 
       metadataState = { ...data, draft: Boolean(data.draft) };
