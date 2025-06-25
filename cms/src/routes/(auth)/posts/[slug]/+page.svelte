@@ -56,6 +56,7 @@
   }
 
   async function handlePublish() {
+    await handleSave
     const res = await publishWorkflow();
     if (res.ok) {
       toast.push("Artikkel publisert");
